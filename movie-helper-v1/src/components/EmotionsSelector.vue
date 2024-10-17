@@ -1,8 +1,5 @@
 <template>
   <div class="emotions">
-    <button @click="selectEmotion('Spooky')">
-      <img src="@/assets/spooky.png" alt="Spooky" />
-    </button>
     <button @click="selectEmotion('Goofy')">
       <img src="@/assets/goofy.png" alt="Goofy" />
     </button>
@@ -14,6 +11,9 @@
     </button>
     <button @click="selectEmotion('Phenomenal')">
       <img src="@/assets/phenomenal.png" alt="Phenomenal" />
+    </button>
+    <button @click="selectEmotion('Spooky')">
+      <img src="@/assets/spooky.png" alt="Spooky" />
     </button>
   </div>
 </template>
