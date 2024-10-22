@@ -1,5 +1,4 @@
 <template>
-
   <div class="emotions">
     <button @click="selectEmotion('Goofy')">
       <img src="@/assets/goofy.png" alt="Goofy" />
@@ -46,23 +45,33 @@ export default {
     },
 
     async fetchMovies(emotion) {
+      let genreId;
+      // Associe un genre TMDb selon l'émotion choisie
       if (emotion === 'Goofy') {
+        genreId = '35'; // Comédie
+      } else if (emotion === 'Depressed') {
+        genreId = '18'; // Drame
+      }
+      // Ajoute les autres genres ici si nécessaire
+
+      if (genreId) {
         try {
           const response = await axios.get(
             'https://api.themoviedb.org/3/discover/movie',
             {
               params: {
                 api_key: process.env.VUE_APP_TMDB_API_KEY,
-                with_genres: '35' // Genre comédie
+                with_genres: genreId
               }
             }
           );
           this.movies = response.data.results;
-          console.log(this.movies); // Pour voir les films dans la console
+          console.log(this.movies); // Affiche les films récupérés
         } catch (error) {
           console.error('Erreur lors de la récupération des films :', error);
-          console.log('Détails de l\'erreur :', error.response); // Affiche plus d'infos sur l'erreur
         }
+      } else {
+        console.error('Emotion non reconnue');
       }
     }
   }
@@ -79,17 +88,17 @@ button {
   margin: 10px;
   padding: 10px;
   border: none;
-  background-color: transparent; 
+  background-color: transparent;
   cursor: pointer;
 }
 
 button img {
-  width: 50px; /* Taille de l'icône */
+  width: 50px;
   height: 50px;
-  transition: transform 0.3s ease; /* Ajout de la transition douce */
+  transition: transform 0.3s ease;
 }
 
 button img:hover {
-  transform: scale(1.4); /* Agrandit l'icône lors du survol */
+  transform: scale(1.4);
 }
 </style>
