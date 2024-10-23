@@ -41,18 +41,24 @@ export default {
   methods: {
     selectEmotion(emotion) {
       console.log(`Emotion selected: ${emotion}`);
-      this.fetchMovies(emotion); // Appelle la fonction pour récupérer les films
+      this.fetchMovies(emotion); 
     },
 
     async fetchMovies(emotion) {
       let genreId;
+
       // Associe un genre TMDb selon l'émotion choisie
       if (emotion === 'Goofy') {
         genreId = '35'; // Comédie
       } else if (emotion === 'Depressed') {
         genreId = '18'; // Drame
+      } else if (emotion === 'Flirty') {
+        genreId = '10749'; // Romance
+      } else if (emotion === 'Phenomenal') {
+        genreId = '28'; // Action
+      } else if (emotion === 'Spooky') {
+        genreId = '27'; // Horreur
       }
-      // Ajoute les autres genres ici si nécessaire
 
       if (genreId) {
         try {
